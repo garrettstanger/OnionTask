@@ -1,6 +1,7 @@
-### Setting up the environment
+# Setting up the environment
 
 After cloning the repository run the command `npm install` to install the node modules necessary to run the app.
+# Project Structure.
 
 ### Creating Components:
 
