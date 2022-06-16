@@ -1,0 +1,35 @@
+#navbar {
+    background-color: #ffffff;
+    height: 50px;
+    border: 1px solid #afafaf;
+    border-style: none none solid none ;
+    clear: both;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+  #logo {
+    margin:10px 0px 0px 40px;
+    float: left;
+  }
+  #user_info {
+    float: right;
+    margin-right: 50px;
+  }
+  #user_info img {
+    margin: 7px 0px 0px 15px;
+  }
+  #user_info p {
+    text-align: center;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 20px;
+    float: right;
+    margin: 10px 20px 0px 10px;
+  }
+  #user_info .material-symbols-outlined{
+    font-size: 23px;
+    float: left;
+    margin: 10px 20px 0px 0px;
+  }
+  
+  

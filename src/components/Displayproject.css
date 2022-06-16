@@ -1,0 +1,112 @@
+#project_info {
+    grid-column: 1/4;
+    grid-row: 1/2;
+}
+#content p {
+    font-family: 'PT Sans', sans-serif;
+}
+.tasks {
+    background-color: #ffffff;
+    margin: 10px 0px 0px 0px;
+    padding: 15px;
+    box-shadow: 2px 6px 8px 1px rgba(133, 141, 146, 0.2);
+    border-radius: 5px;
+    border: 0.5px solid #e4e4e4;
+}
+.task_number {
+    padding: 7px;
+    background-color: rgb(49, 49, 49);
+    width: fit-content;
+    border-radius: 5px;
+    float: right;
+    color: #ffffff;
+    margin: -26px -7px 0px 0px;
+    font-size: 13px;
+}
+.task_group {
+    font-weight: 700;
+    background-color: #ffffff;
+    border-radius: 5px;
+    padding: 15px;
+    border: 0.5px solid #e4e4e4;
+}
+#in_progress {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+#done {
+    grid-column: 3/4;
+    grid-row: 2/3;
+}
+#assigned {
+    grid-column: 1/2;
+    grid-row: 2/3;
+}
+.date {
+    padding: 5px;
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-top: 20px;
+}
+.tasks .material-symbols-rounded {
+    font-size: 11px;
+    padding:0px;
+}
+#announcements h3 {
+    margin: 0;
+}
+#announcements {
+    padding: 20px;
+    max-width: 900px;
+    background-color: #ffffff;
+    clear: both;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 0.5px solid #e4e4e4;
+    
+}
+#announcements p {
+    margin-left: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    border: solid #ddd;
+    border-style: none none none solid;
+ 
+}
+#project_info h2 {
+    float: left;
+}
+#colaborators img {
+    width: 30px;
+    border-radius: 80px;
+    margin-right: -20px;
+    border: 4px solid #f3f5f7;
+}
+#colab_pic {
+    margin-left: 20px;
+    float: left;
+    width: fit-content;
+    margin-top: 27px;
+   
+}
+.colab_pic_task {
+    
+    width: fit-content;
+    margin-top: -30px;
+    float: right;
+    margin-right: 20px;
+}
+.colab_pic_task img {
+    width: 20px;
+    border-radius: 80px;
+    margin-right: -15px;
+    border: 4px solid #f3f5f7;
+    
+}
+.priority {
+    font-size: 12px;
+    float: left;
+    margin-top: -20px;
+    margin-left: 70px;
+}
