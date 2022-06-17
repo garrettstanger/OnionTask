@@ -10,7 +10,7 @@ function MyProjects(props) {
         <>
             {props.projects.map((project) => {
                 return (
-                    <li onClick={() => setContent('project')}><span class="material-symbols-rounded">folder</span>{project.title}</li>
+                    <li key={project} onClick={() => setContent('project')}><span className="material-symbols-rounded">folder</span>{project.title}</li>
                 )
             })}
           

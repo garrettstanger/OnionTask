@@ -5,8 +5,8 @@ import Menu from './Menu'
 import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
-import { collection, doc, getDocs } from 'firebase/firestore'
-import Calendar from './Calendar';
+import { collection, doc, getDocs, query, where } from 'firebase/firestore'
+
 
 
 
@@ -18,7 +18,9 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
-  const projectsCollectionRef = collection(db, 'Projects')
+  // const projectsCollectionRef = collection(db, 'Projects')
+  const projectsCollectionRef = query(collection(db, 'Projects/'),
+    where('Users','array-contains','m2YF1LIIFkTyyp8wESiM'))
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);

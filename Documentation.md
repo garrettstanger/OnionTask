@@ -1,11 +1,13 @@
 # Setting up the environment
 
-After cloning the repository run the command `npm install` to install the node modules necessary to run the app.
+After cloning the repository, run the command `npm install` to install the node modules necessary to run the app.
 # Project Structure.
 
 ### Creating Components:
 
-Every component is defined in two parts. The css file defines where the component is placed. The js file defines what it is. The majority of work is in the js file. 
+Inside the `src/components` folder, you will create a new file  with the name of your component. Capitalize the first letter, and every first letter of every word and use a descriptive name (`NewComponent.js`). 
+
+To use your component import it in the file that it'll be used  `import NewComponent from './NewComponent'`
 
 #### Making a component
 

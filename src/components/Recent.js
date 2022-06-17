@@ -7,11 +7,11 @@ function Recent(props) {
     const {content, setContent} = useContext(ContentContext)
 
     return (
-        <div class="recent">
+        <div className="recent">
         <a onClick={ () => setContent('project') }>
-            <span class="project1_link"><p>{props.projectInfo.title}</p></span>
+            <span className="project1_link"><p>{props.projectInfo.title}</p></span>
         
-        <p class="project_description"></p>
+        <p className="project_description"></p>
         
         </a>
     </div>  

@@ -10,10 +10,10 @@ function Navbar(props) {
               <img src={logo} width="120px"/>       
           </div>
           <div id="user_info">
-              <span class="material-symbols-outlined">
+              <span className="material-symbols-outlined">
                   notifications
               </span>
-              <span class="material-symbols-outlined">
+              <span className="material-symbols-outlined">
                   mail
               </span>
               <p>Welcome {props.name}</p>

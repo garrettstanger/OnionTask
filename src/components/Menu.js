@@ -9,19 +9,19 @@ function Menu(props) {
       <div id="overview">
             
               <ul>
-                  <li><span class="material-symbols-rounded">
+                  <li><span className="material-symbols-rounded">
                       dashboard
                       </span><a onClick={() => setContent('dashboard')}>Dashboard</a></li>
-                  <li><span class="material-symbols-rounded">
+                  <li><span className="material-symbols-rounded">
                       edit
                       </span><a onClick={() => setContent('newProject')}>Create new project</a></li>
-                  <li><span class="material-symbols-rounded">
+                  <li><span className="material-symbols-rounded">
                       calendar_today
                       </span><a onClick={() => setContent('calendar')}>Calendar</a></li>
-                  <li><span class="material-symbols-rounded">
+                  <li><span className="material-symbols-rounded">
                       notifications
                       </span>Reminders</li>
-                  <li><span class="material-symbols-rounded">
+                  <li><span className="material-symbols-rounded">
                       pages
                       </span><a href="myspace.html">My space</a></li>
                   
