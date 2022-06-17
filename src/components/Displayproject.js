@@ -26,7 +26,7 @@ function Displayproject(props) {
 
                 <div id="announcements">
                     <h3>
-                        <span class="material-symbols-rounded">
+                        <span className="material-symbols-rounded">
                             campaign
                         </span>Description
                     </h3>
@@ -37,9 +37,9 @@ function Displayproject(props) {
 
             
             <div id="assigned">
-                <div class="task_group">
+                <div className="task_group">
                     <p>In progress</p>
-                    <p class="task_number">1</p>
+                    <p className="task_number">1</p>
                 </div>
                 
                 {props.tasks.map((task) => {
@@ -52,23 +52,23 @@ function Displayproject(props) {
 
             <div id="in_progress">
 
-                <div class="task_group">
+                <div className="task_group">
                     <p>Done</p>
-                    <p class="task_number">2</p>
+                    <p className="task_number">2</p>
                 </div>
 
-                <div class="tasks">
+                <div className="tasks">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, nisi quis blandit porta, urna nunc tristique urna, ut consectetur quam metus ut libero. </p>
-                    <div class="date" style={dateStyle}>
+                    <div className="date" style={dateStyle}>
                         <p>
-                            <span class="material-symbols-rounded">
+                            <span className="material-symbols-rounded">
                                 schedule
                             </span>
                             June 10
                         </p>
                     </div>
-                    <div class="priority"><p>● Important</p></div>
-                    <div class="colab_pic_task">
+                    <div className="priority"><p>● Important</p></div>
+                    <div className="colab_pic_task">
                         
                         <img src={profilePic}/>
                         <img src={profilePic}/>
@@ -77,18 +77,18 @@ function Displayproject(props) {
                     </div>
                 </div>
 
-                <div class="tasks">
+                <div className="tasks">
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, nisi quis blandit porta, urna nunc tristique urna, ut consectetur quam metus ut libero. </p>
-                    <div class="date"style={dateStyle}>
+                    <div className="date"style={dateStyle}>
                         <p>
-                            <span class="material-symbols-rounded">
+                            <span className="material-symbols-rounded">
                                 schedule
                             </span>
                             June 16
                         </p>
                     </div>
-                    <div class="priority"><p>● Mid-level</p></div>
-                    <div class="colab_pic_task">
+                    <div className="priority"><p>● Mid-level</p></div>
+                    <div className="colab_pic_task">
                         
                         <img src={profilePic}/>
                         <img src={profilePic}/>
@@ -100,9 +100,9 @@ function Displayproject(props) {
                                 
             </div>
             {/* <div id="done">
-                <div class="task_group">
+                <div className="task_group">
                     <p>Done</p>
-                    <p class="task_number">0</p>
+                    <p className="task_number">0</p>
                 </div>
 
                 
