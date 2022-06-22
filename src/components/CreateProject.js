@@ -2,6 +2,7 @@ import { async } from '@firebase/util'
 import React, { useState } from 'react'
 import { db } from './firebase';
 import {collection, addDoc } from 'firebase/firestore'
+import './CreateProject.css';
 
 
 
@@ -13,11 +14,11 @@ function CreateProject() {
     }
 
     return (
-        <>
+        <div id='create_project'>
         <input type='text' placeholder='Project Name...' onChange={(event) => {setTitle(event.target.value)}}></input>
 
-        <button onClick={addProject}>Crate Project</button>
-        </>
+        <button onClick={addProject}>Create Project</button>
+        </div>
     )
 }
 
