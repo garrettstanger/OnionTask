@@ -34,8 +34,8 @@ function App() {
         return Doc
       });
       // Wait for all to resolve and then using it in setProjects()
-      Promise.all(promise).then(Doc => {
-      setProjects(Doc.map((doc) => ({...doc.data(), id: doc.id })))})
+      Promise.all(promise).then(Docs => {
+      setProjects(Docs.map((doc) => ({...doc.data(), id: doc.id })))})
     }
 
     getProjects();
