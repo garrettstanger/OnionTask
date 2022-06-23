@@ -7,7 +7,7 @@ import { ContentContext } from './ContentContext';
 import {db} from './firebase'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
 
-let public_id = "dbenjamy"
+let public_id = "Ronald_1893"
 
 function App() {
   const [content, setContent] = useState('dashboard')
@@ -30,7 +30,7 @@ function App() {
 
       // Promising each project from each user
       const promise = userProjectsRef.map( async ref => {
-        const Doc = getDoc(doc(db,'Projects',ref))
+        const Doc = getDoc(ref['location'])
         return Doc
       });
       // Wait for all to resolve and then using it in setProjects()
