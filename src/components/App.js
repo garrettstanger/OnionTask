@@ -21,19 +21,19 @@ function App() {
 
   useEffect(() => {
     const getProjects = async () => {
-      
+
+      // Getting user's document from public ID
       const search = await getDoc(doc(db,'PublicUserID',public_id))
       const User = await getDoc(
         doc(db,'Users',search.data()['private_reference']))
-
       const userProjectsRef = await User.get('Projects')
 
+      // Promising each project from each user
       const promise = userProjectsRef.map( async ref => {
         const Doc = getDoc(doc(db,'Projects',ref))
         return Doc
-          // console.log(Doc.data())})
       });
-      
+      // Wait for all to resolve and then using it in setProjects()
       Promise.all(promise).then(Doc => {
       setProjects(Doc.map((doc) => ({...doc.data(), id: doc.id })))})
     }
