@@ -5,7 +5,7 @@ import CreateProject from './CreateProject';
 import Dashboard from './Dashboard';
 import Displayproject from './Displayproject';
 import Calendar from './Calendar';
-import MySpace from './MySpace';
+// import MySpace from './MySpace';
 
 
 function Content(props) {
@@ -15,13 +15,13 @@ function Content(props) {
     if (content === 'dashboard') {
         display = <Dashboard projects = {props.projects} />;
     } else if (content === 'project') {
-        display = <Displayproject project = {props.project} tasks = {props.tasks}/>;
+        display = <Displayproject project = {props.projects} tasks = {props.tasks}/>;
     } else if (content === 'newProject') {
         display = <CreateProject />
     } else if (content === 'calendar') {
         display = <Calendar />
     } else if (content == 'MySpace'){
-        display = <MySpace />
+        // display = <MySpace />
     }
    
     return (

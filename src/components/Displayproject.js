@@ -11,7 +11,7 @@ function Displayproject(props) {
     return (
         <>
             <div id="project_info">
-                <h2>{props.projects.title}</h2>
+                <h2>{props.project.title}</h2>
 
                 <div id="colaborators">
         
@@ -42,11 +42,11 @@ function Displayproject(props) {
                     <p className="task_number">1</p>
                 </div>
                 
-                {props.tasks.map((task) => {
+                {/* {props.tasks.map((task) => {
                     const t = task.fields
                     
                     
-                })}
+                })} */}
             
             </div>
 
@@ -99,14 +99,7 @@ function Displayproject(props) {
 
                                 
             </div>
-            {/* <div id="done">
-                <div className="task_group">
-                    <p>Done</p>
-                    <p className="task_number">0</p>
-                </div>
-
-                
-            </div> */}
+            
         </> 
         
     )

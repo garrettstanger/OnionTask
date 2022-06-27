@@ -7,6 +7,7 @@ import { ContentContext } from './ContentContext';
 import {db} from './firebase'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
 
+
 let public_id = "Ronald_1893"
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
   const tasksCollectionRef = collection(db, 'Tasks')
-
+  console.log(projects)
   useEffect(() => {
     const getProjects = async () => {
 
@@ -51,16 +52,16 @@ function App() {
   }, [])
 
   return (
-    <>
-    <ContentContext.Provider value={{content, setContent}}>
-      <Navbar name = {public_id}/>
  
-      <Menu projects = {projects}/>
-      <Content projects = {projects} tasks = {tasks}/>
+      <ContentContext.Provider value={{content, setContent}}>
+        <Navbar name = {public_id}/>
+  
+        <Menu projects = {projects}/>
+        <Content projects = {projects} tasks = {tasks}/>
+        
       
-     
-    </ContentContext.Provider>
-    </>
+      </ContentContext.Provider>
+
   );
 }
 
