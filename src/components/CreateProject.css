@@ -1,0 +1,11 @@
+#create_project {
+    margin-top: 20px;
+    color: black;
+    font-family: 'PT Sans', sans-serif;
+}
+#create_project_title {
+    padding-bottom: 50px;
+    color: black;
+    font-size: 200%;
+    font-family: 'PT Sans', sans-serif;
+}

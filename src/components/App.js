@@ -5,22 +5,15 @@ import Menu from './Menu'
 import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
-import { collection, doc, getDocs, query, where } from 'firebase/firestore'
+import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
 
-
-
-
-let user = "Ronald"
-
+let public_id = "Ronald_1893"
 
 function App() {
   const [content, setContent] = useState('dashboard')
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
-  // const projectsCollectionRef = collection(db, 'Projects')
-  const projectsCollectionRef = query(collection(db, 'Projects/'),
-    where('Users','array-contains','m2YF1LIIFkTyyp8wESiM'))
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
@@ -28,8 +21,21 @@ function App() {
 
   useEffect(() => {
     const getProjects = async () => {
-      const data = await getDocs(projectsCollectionRef);
-      setProjects(data.docs.map((doc) => ({...doc.data(), id: doc.id })))
+
+      // Getting user's document from public ID
+      const search = await getDoc(doc(db,'PublicUserID',public_id))
+      const User = await getDoc(
+        doc(db,'Users',search.data()['private_reference']))
+      const userProjectsRefs = await User.get('Projects')
+
+      // Promising each project from the user
+      const promise = userProjectsRefs.map( async ref => {
+        const Doc = getDoc(ref['location'])
+        return Doc
+      });
+      // Wait for all to resolve and then using it in setProjects()
+      Promise.all(promise).then(Docs => {
+      setProjects(Docs.map((doc) => ({...doc.data(), id: doc.id })))})
     }
 
     getProjects();
@@ -47,9 +53,9 @@ function App() {
   return (
     <>
     <ContentContext.Provider value={{content, setContent}}>
-      <Navbar name = {user}/>
+      <Navbar name = {public_id}/>
  
-      <Menu projects = {projects} tasks = {tasks}/>
+      <Menu projects = {projects}/>
       <Content projects = {projects} tasks = {tasks}/>
       
      
