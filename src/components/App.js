@@ -26,16 +26,16 @@ function App() {
       const search = await getDoc(doc(db,'PublicUserID',public_id))
       const User = await getDoc(
         doc(db,'Users',search.data()['private_reference']))
-      const userProjectsRef = await User.get('Projects')
+      const userProjectsRefs = await User.get('Projects')
 
-      // Promising each project from each user
-      const promise = userProjectsRef.map( async ref => {
+      // Promising each project from the user
+      const promise = userProjectsRefs.map( async ref => {
         const Doc = getDoc(ref['location'])
         return Doc
       });
       // Wait for all to resolve and then using it in setProjects()
-      Promise.all(promise).then(Doc => {
-      setProjects(Doc.map((doc) => ({...doc.data(), id: doc.id })))})
+      Promise.all(promise).then(Docs => {
+      setProjects(Docs.map((doc) => ({...doc.data(), id: doc.id })))})
     }
 
     getProjects();
