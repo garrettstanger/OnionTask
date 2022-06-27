@@ -16,9 +16,9 @@ function CreateProject() {
     return (
         <div id='create_project'>
             <div id='create_project_title'>Create New Project</div>
-            <input type='text' placeholder='Project Name...' onChange={(event) => {setTitle(event.target.value)}}></input><br></br>
-            <input type='date' onChange={(event) => {setDate(event.target.value)}}></input><br></br>
-            <input type='text' placeholder='Project Desciption...' onChange={(event) => {setDescription(event.target.value)}}></input><br></br>
+            <input type='text' placeholder='Project Name...' onChange={(event) => {setTitle(event.target.value)}}></input><br></br><br></br>
+            <input type='date' onChange={(event) => {setDate(event.target.value)}}></input><br></br><br></br>
+            <input type='text' placeholder='Project Desciption...' onChange={(event) => {setDescription(event.target.value)}}></input><br></br><br></br>
             <button onClick={addProject}>Create Project</button><br></br>
         </div>
         
