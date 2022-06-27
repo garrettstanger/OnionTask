@@ -11,7 +11,7 @@ function Displayproject(props) {
     return (
         <>
             <div id="project_info">
-                <h2>{props.tasks[1].title}</h2>
+                <h2>{props.projects.title}</h2>
 
                 <div id="colaborators">
         

@@ -2,6 +2,7 @@ import React from 'react';
 
 import {useContext} from 'react'
 import { ContentContext } from './ContentContext'
+import './Menu.css'
 
 function MyProjects(props) {
     const {content, setContent} = useContext(ContentContext)
@@ -10,7 +11,7 @@ function MyProjects(props) {
         <>
             {props.projects.map((project) => {
                 return (
-                    <li key={project} onClick={() => setContent('project')}><span className="material-symbols-rounded">folder</span>{project.title}</li>
+                    <a href={project.id}><li key={project.id} onClick={() => setContent('project',project)}><span className="material-symbols-rounded">folder</span>{project.title} <div className='project_id'> {project.id} </div> </li></a>
                 )
             })}
           
