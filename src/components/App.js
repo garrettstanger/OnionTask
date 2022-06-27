@@ -56,7 +56,7 @@ function App() {
       <Navbar name = {public_id}/>
  
       <Menu projects = {projects}/>
-      <Content projects = {projects}/>
+      <Content projects = {projects} tasks = {tasks}/>
       
      
     </ContentContext.Provider>

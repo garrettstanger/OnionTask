@@ -23,8 +23,7 @@ function Menu(props) {
                       </span>Reminders</li>
                   <li><span className="material-symbols-rounded">
                       pages
-                      </span><a href="myspace.html">My space</a></li>
-                  
+                      </span><a onClick={() => setContent('MySpace')}>MySpace</a></li>
               </ul>
   
               <div id="display_tree">
