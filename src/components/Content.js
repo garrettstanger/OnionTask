@@ -5,6 +5,7 @@ import CreateProject from './CreateProject';
 import Dashboard from './Dashboard';
 import Displayproject from './Displayproject';
 import Calendar from './Calendar';
+import MySpace from './MySpace';
 
 
 function Content(props) {
@@ -19,6 +20,8 @@ function Content(props) {
         display = <CreateProject />
     } else if (content === 'calendar') {
         display = <Calendar />
+    } else if (content == 'MySpace'){
+        display = <MySpace />
     }
    
     return (
