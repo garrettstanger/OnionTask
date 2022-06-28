@@ -8,10 +8,11 @@ const dateStyle = {
     color: 'rgb(64, 110, 18)',
 }
 function Displayproject(props) {
+    console.log(props.project)
     return (
         <>
             <div id="project_info">
-                <h2>{props.project.title}</h2>
+                <h2>{props.project['title']}</h2>
 
                 <div id="colaborators">
         
@@ -30,7 +31,7 @@ function Displayproject(props) {
                             campaign
                         </span>Description
                     </h3>
-                    <p>{props.tasks[0].description}</p>
+                    <p>{props.project.title}</p>
                         
                 </div> 
             </div>
@@ -42,12 +43,6 @@ function Displayproject(props) {
                     <p className="task_number">1</p>
                 </div>
                 
-                {props.tasks.map((task) => {
-                    const t = task.fields
-                    
-                    
-                })}
-            
             </div>
 
             <div id="in_progress">

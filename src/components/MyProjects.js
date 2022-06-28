@@ -9,7 +9,6 @@ function MyProjects(props) {
 
     const chooseProject = (project) => {
         props.setProjectOnClick(project);
-        console.log(project);
 
         setContent('project');
     }
