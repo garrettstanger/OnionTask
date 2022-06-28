@@ -5,7 +5,6 @@ body {
   .app {
     padding: 50px;
     height: 100vh;
-    background-image: linear-gradient(rgba(#000, 0.6), rgba(#000, 0.6)), url('assets/');
     background-size: cover;   
 }
 h1 { 
@@ -51,6 +50,7 @@ h1 {
 .note {
   position: absolute;
   cursor: pointer;
+  background-image: url('assets/post-it-note.png');
   background-size: cover;
   top: 100px;
   left: 300px;
