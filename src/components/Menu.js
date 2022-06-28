@@ -34,7 +34,6 @@ function Menu(props) {
                   <h3>Projects</h3>
                       <MyProjects 
                       projects = {props.projects}
-                      getProject = {props.getProjectOnClick}
                       setProjectOnClick = {props.setProjectOnClick}
                       tasks = {props.tasks}/>
                   </ul>
