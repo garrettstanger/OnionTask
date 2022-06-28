@@ -32,7 +32,11 @@ function Menu(props) {
                 
                   <ul>
                   <h3>Projects</h3>
-                      <MyProjects projects = {props.projects} tasks = {props.tasks}/>
+                      <MyProjects 
+                      projects = {props.projects}
+                      getProject = {props.getProjectOnClick}
+                      setProjectOnClick = {props.setProjectOnClick}
+                      tasks = {props.tasks}/>
                   </ul>
                   
               </div>

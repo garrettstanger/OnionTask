@@ -15,7 +15,7 @@ function Content(props) {
     if (content === 'dashboard') {
         display = <Dashboard projects = {props.projects} />;
     } else if (content === 'project') {
-        display = <Displayproject project = {props.projects} tasks = {props.tasks}/>;
+        display = <Displayproject project = {props.currentProject}/>;
     } else if (content === 'newProject') {
         display = <CreateProject />
     } else if (content === 'calendar') {

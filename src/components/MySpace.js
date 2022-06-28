@@ -34,15 +34,15 @@ function MySpace(){
         updateNote(id, element.value);
     });
 
-    element.addEventListener("dblclick", () => {
-        const doDelete = confirm(
-        "Are you sure you wish to delete this sticky note?"
-        );
+    // element.addEventListener("dblclick", () => {
+    //     const doDelete = confirm(
+    //     "Are you sure you wish to delete this sticky note?"
+    //     );
 
-        if (doDelete) {
-        deleteNote(id, element);
-        }
-    });
+    //     if (doDelete) {
+    //     deleteNote(id, element);
+    //     }
+    // });
 
     return element;
     }

@@ -15,11 +15,15 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
+  const [currentProject, setCurrentProject] = useState([])
+  const setProjectOnClick = (project) => {
+    setCurrentProject(project)
+  }
+
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
   const tasksCollectionRef = collection(db, 'Tasks')
-  console.log(projects)
   useEffect(() => {
     const getProjects = async () => {
 
@@ -56,7 +60,7 @@ function App() {
       <ContentContext.Provider value={{content, setContent}}>
         <Navbar name = {public_id}/>
   
-        <Menu projects = {projects}/>
+        <Menu projects = {projects} setProjectOnClick = {setProjectOnClick}/>
         <Content projects = {projects} tasks = {tasks}/>
         
       
