@@ -16,7 +16,7 @@ function Dashboard(props) {
             <h2>Recent</h2>
             {props.projects.map((project) => {
                 return(
-                    <Recent key={project} projectInfo = {project} />
+                    <Recent key={project.id} projectInfo = {project} />
                 )
             })}
         </div>

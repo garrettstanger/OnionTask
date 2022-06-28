@@ -6,7 +6,8 @@ import MyProjects from './MyProjects';
 function Menu(props) {
     const {content, setContent} = useContext(ContentContext)
     return(
-      <div id="overview">
+       
+        <div id="overview">
             
               <ul>
                   <li><span className="material-symbols-rounded">
@@ -14,7 +15,7 @@ function Menu(props) {
                       </span><a onClick={() => setContent('dashboard')}>Dashboard</a></li>
                   <li><span className="material-symbols-rounded">
                       edit
-                      </span><a onClick={() => setContent('newProject')}>Create new project</a></li>
+                        </span><a onClick={() => setContent('newProject')}>Create Project</a></li>
                   <li><span className="material-symbols-rounded">
                       calendar_today
                       </span><a onClick={() => setContent('calendar')}>Calendar</a></li>
@@ -25,16 +26,21 @@ function Menu(props) {
                       pages
                       </span><a onClick={() => setContent('MySpace')}>MySpace</a></li>
               </ul>
+         
   
               <div id="display_tree">
                 
                   <ul>
                   <h3>Projects</h3>
-                      <MyProjects projects = {props.projects} tasks = {props.tasks}/>
+                      <MyProjects 
+                      projects = {props.projects}
+                      setProjectOnClick = {props.setProjectOnClick}
+                      tasks = {props.tasks}/>
                   </ul>
                   
               </div>
-          </div>
+        </div>
+      
     )
 }
 

@@ -1,14 +1,21 @@
 
 import { ContentContext } from './ContentContext'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 
 function Recent(props) {
     const {content, setContent} = useContext(ContentContext)
-
+    // useEffect(() => {
+    //     const getTasks = async () => {
+    //       const data = await getDocs(tasksCollectionRef);
+    //       setTasks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    //     }
+    
+    //     getTasks();
+    //   }, [])
     return (
         <div className="recent">
-        <a onClick={ () => setContent('project') }>
+        <a onClick={ () => setContent('project')}>
             <span className="project1_link"><p>{props.projectInfo.title}</p></span>
         
         <p className="project_description"></p>

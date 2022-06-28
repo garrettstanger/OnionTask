@@ -7,6 +7,7 @@ import { ContentContext } from './ContentContext';
 import {db} from './firebase'
 import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
 
+
 let public_id = "Ronald_1893"
 
 function App() {
@@ -14,6 +15,14 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
+  const [currentProject, setCurrentProject] = useState([])
+  const setProjectOnClick = (project) => {
+    setCurrentProject(project)
+  }
+  const getCurrentProject = () => {
+    return currentProject;
+  }
+
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
@@ -51,16 +60,20 @@ function App() {
   }, [])
 
   return (
-    <>
-    <ContentContext.Provider value={{content, setContent}}>
-      <Navbar name = {public_id}/>
  
-      <Menu projects = {projects}/>
-      <Content projects = {projects} tasks = {tasks}/>
+      <ContentContext.Provider value={{content, setContent}}>
+        <Navbar name = {public_id}/>
+  
+        <Menu projects = {projects} setProjectOnClick = {setProjectOnClick}/>
+        <Content 
+        projects = {projects}
+        getCurrentProject = {getCurrentProject}
+        setProjectOnClick = {setProjectOnClick}
+        tasks = {tasks}/>
+        
       
-     
-    </ContentContext.Provider>
-    </>
+      </ContentContext.Provider>
+
   );
 }
 

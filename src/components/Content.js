@@ -7,6 +7,7 @@ import Displayproject from './Displayproject';
 import Calendar from './Calendar';
 import MySpace from './MySpace';
 
+
 function Content(props) {
     const {content, setContent} = useContext(ContentContext)
     let display;
@@ -14,7 +15,7 @@ function Content(props) {
     if (content === 'dashboard') {
         display = <Dashboard projects = {props.projects} />;
     } else if (content === 'project') {
-        display = <Displayproject projects = {props.projects} tasks = {props.tasks}/>;
+        display = <Displayproject project = {props.getCurrentProject()}/>;
     } else if (content === 'newProject') {
         display = <CreateProject />
     } else if (content === 'calendar') {
