@@ -16,6 +16,11 @@ function App() {
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
   const [currentProject, setCurrentProject] = useState([])
+  const [currentUser, setCurrentUser] = useState([])
+  const getCurrentUser = () => {
+    return currentUser;
+  }
+
   const setProjectOnClick = (project) => {
     setCurrentProject(project)
   }
@@ -33,10 +38,10 @@ function App() {
 
       // Getting user's document from public ID
       const search = await getDoc(doc(db,'PublicUserID',public_id))
-      const User = await getDoc(
-        doc(db,'Users',search.data()['private_reference']))
+      const userRef = doc(db,'Users',search.data()['private_reference'])
+      const User = await getDoc(userRef)
       const userProjectsRefs = await User.get('Projects')
-
+      setCurrentUser([userRef, User.id])
       // Promising each project from the user
       const promise = userProjectsRefs.map( async ref => {
         const Doc = getDoc(ref['location'])
@@ -69,7 +74,8 @@ function App() {
         projects = {projects}
         getCurrentProject = {getCurrentProject}
         setProjectOnClick = {setProjectOnClick}
-        tasks = {tasks}/>
+        tasks = {tasks}
+        getCurrentUser = {getCurrentUser}/>
         
       
       </ContentContext.Provider>

@@ -17,7 +17,7 @@ function Content(props) {
     } else if (content === 'project') {
         display = <Displayproject project = {props.getCurrentProject()}/>;
     } else if (content === 'newProject') {
-        display = <CreateProject />
+        display = <CreateProject getCurrentUser = {props.getCurrentUser}/>
     } else if (content === 'calendar') {
         display = <Calendar />
     } else if (content == 'MySpace'){

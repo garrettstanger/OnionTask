@@ -1,17 +1,31 @@
 import { async } from '@firebase/util'
 import React, { useState } from 'react'
 import { db } from './firebase';
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, updateDoc, doc, arrayUnion } from 'firebase/firestore'
 import './CreateProject.css';
 
-function CreateProject() {
+function CreateProject(props) {
+    const [userRef, userID] = props.getCurrentUser();
+    console.log(userRef);
     const [newTitle, setTitle] = useState('');
     const [newDate, setDate] = useState('');
     const [newDescription, setDescription] = useState('');
-    const projectsCollectionRef = collection(db, 'Projects')
-    const addProject = async () => {
-    await addDoc(projectsCollectionRef, {title : newTitle, date : newDate, description : newDescription})
-    }
+    const projectsCollectionRef = collection(db, 'Projects');
+    
+    const addProject = async (event) => {
+    await addDoc(projectsCollectionRef, {title : newTitle, date : newDate, description : newDescription, Users : userID})
+    
+    addProject().then(projectID => {
+            const projectRef = {'location' : projectID, 'last_interaction' : "today"}
+            updateDoc(userRef, {
+                Projects : arrayUnion(projectRef)
+            })
+
+        })
+        event.preventDefault();
+    } 
+    
+
 
     return (
         <div id='create_project'>
