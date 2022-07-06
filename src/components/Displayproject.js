@@ -12,7 +12,7 @@ function Displayproject(props) {
     return (
         <>
             <div id="project_info">
-                <h2>{props.project['title']}</h2>
+                <h2>{props.project.title}</h2>
 
                 <div id="colaborators">
         

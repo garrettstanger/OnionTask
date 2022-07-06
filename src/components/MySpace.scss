@@ -64,7 +64,9 @@ h1 {
       height: 100%;
       width: 100%;
       white-space: pre-wrap;
-      overflow-y: scroll;
+      overflow-y: hidden;
+      padding-top: 20px;
+      color: rgb(49, 49, 49);
   }
 
   .close {
