@@ -17,9 +17,6 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [currentProject, setCurrentProject] = useState([])
   const [currentUser, setCurrentUser] = useState([])
-  const getCurrentUser = () => {
-    return currentUser;
-  }
 
   const setProjectOnClick = (project) => {
     setCurrentProject(project)
@@ -27,7 +24,6 @@ function App() {
   const getCurrentProject = () => {
     return currentProject;
   }
-
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
@@ -75,7 +71,7 @@ function App() {
         getCurrentProject = {getCurrentProject}
         setProjectOnClick = {setProjectOnClick}
         tasks = {tasks}
-        getCurrentUser = {getCurrentUser}/>
+        getCurrentUser = {currentUser}/>
         
       
       </ContentContext.Provider>

@@ -17,7 +17,7 @@ function MyProjects(props) {
 
 
     props.projects.map((project) => {
-        console.log(project.Children.)
+        // console.log(project.Children.)
     })
 
 
