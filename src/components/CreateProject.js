@@ -5,7 +5,7 @@ import { collection, addDoc, updateDoc, doc, arrayUnion } from 'firebase/firesto
 import './CreateProject.css';
 
 function CreateProject(props) {
-    const [userRef, userID] = props.getCurrentUser;
+    const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
     const [newDate, setDate] = useState('');
     const [newDescription, setDescription] = useState('');
