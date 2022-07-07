@@ -15,15 +15,11 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
-  const [currentProject, setCurrentProject] = useState([])
+  const [currentProject, setProject] = useState([])
   const [currentUser, setCurrentUser] = useState([])
 
-  const setProjectOnClick = (project) => {
-    setCurrentProject(project)
-  }
-  const getCurrentProject = () => {
-    return currentProject;
-  }
+
+
 
   // Get the Tasks Collection
   const [tasks, setTasks] = useState([]);
@@ -65,13 +61,11 @@ function App() {
       <ContentContext.Provider value={{content, setContent}}>
         <Navbar name = {public_id}/>
   
-        <Menu projects = {projects} setProjectOnClick = {setProjectOnClick}/>
+        <Menu projects = {projects} setProject = {setProject}/>
         <Content 
         projects = {projects}
-        getCurrentProject = {getCurrentProject}
-        setProjectOnClick = {setProjectOnClick}
-        tasks = {tasks}
-        getCurrentUser = {currentUser}/>
+        currentProject = {currentProject}
+        currentUser = {currentUser}/>
         
       
       </ContentContext.Provider>
