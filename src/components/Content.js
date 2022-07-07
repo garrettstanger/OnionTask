@@ -20,7 +20,7 @@ function Content(props) {
         display = <CreateProject currentUser = {props.currentUser}/>
     } else if (content === 'calendar') {
         display = <Calendar />
-    } else if (content == 'MySpace'){
+    } else if (content === 'MySpace'){
         display = <MySpace />
     }
    
