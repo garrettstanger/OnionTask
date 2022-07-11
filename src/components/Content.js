@@ -13,7 +13,8 @@ function Content(props) {
     let display;
 
     if (content === 'dashboard') {
-        display = <Dashboard projects = {props.projects} />;
+        display = <Dashboard projects = {props.projects} 
+        setProject ={props.setProject} />;
     } else if (content === 'project') {
         display = <Displayproject project = {props.currentProject}/>;
     } else if (content === 'newProject') {

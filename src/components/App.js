@@ -6,7 +6,7 @@ import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
 import { getDoc, doc } from 'firebase/firestore'
-
+import DragNav from './DragNav'
 
 let public_id = "Ronald_1893"
 
@@ -46,10 +46,13 @@ function App() {
         <Navbar name = {public_id}/>
   
         <Menu projects = {projects} setProject = {setProject}/>
-        <Content 
-        projects = {projects}
-        currentProject = {currentProject}
-        currentUser = {currentUser}/>
+
+        <DragNav component = {
+          <Content 
+          projects = {projects}
+          setProject = {setProject}
+          currentProject = {currentProject}
+          currentUser = {currentUser}/>}/>
         
       
       </ContentContext.Provider>

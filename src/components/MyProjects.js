@@ -15,19 +15,6 @@ function MyProjects(props) {
         setContent('project');
     }
 
-
-   
-
-
-
-
-
-
-   
-
-
-
-
     return (
         <>
             {props.projects.map((project) => {
