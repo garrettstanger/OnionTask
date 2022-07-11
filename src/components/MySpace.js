@@ -1,15 +1,17 @@
 
-//import { db } from './firebase';
-//import {collection, addDoc } from 'firebase/firestore'
+import { db } from './firebase';
+import {collection, addDoc, setDoc } from 'firebase/firestore'
 import './MySpace.scss' 
 import React, { useState, useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
+
 const initalNoteState ={
 
     lastNoteCreated: null,
     totalNotes: 0,
     notes: [],
 };
+const projectsCollectionRef = collection(db, 'Notes')
 
 const notesReducer = (prevState,action) =>{
     switch(action.type){
@@ -21,7 +23,9 @@ const notesReducer = (prevState,action) =>{
             };
 
             console.log('After ADD_NOTE: ', newState);
+            addDoc(projectsCollectionRef,{myNotes:action.payload.text});
             return newState;
+
         }
         case 'DELETE_NOTE':{
             const newState = {
@@ -39,22 +43,21 @@ const notesReducer = (prevState,action) =>{
 function MySpace(){
     const [noteInput, setNoteInput] = useState('');
     const [noteState, dispatch] = useReducer(notesReducer, initalNoteState);
+    //const projectsCollectionRef = collection(db, 'Projects')
+
 
     const addNote = event => {
         event.preventDefault();
         if (!noteInput){
             return;
         }
-
         const newNote ={
             id: uuid(),
             text: noteInput,
             rotate: Math.floor(Math.random() * 20),
         };
-
         dispatch({type: 'ADD_NOTE', payload: newNote});
         setNoteInput('');
-
     };
     const dropNote = event => {
         event.target.style.left = `${event.pageX - 50}px`;
@@ -64,6 +67,7 @@ function MySpace(){
         event.stopPropagation();
         event.preventDefault();
     }
+
 
     return(
         <div className="app" onDragOver={dragOver}>
@@ -75,8 +79,7 @@ function MySpace(){
             <textarea value = {noteInput}
              onChange = {event => setNoteInput(event.target.value)}
              placeholder = "Create a new note..."></textarea>
-            <button>Add</button>
-
+            <button>Add Note</button> 
         </form>
         {noteState
           .notes
@@ -86,7 +89,7 @@ function MySpace(){
                 draggable = "true"
                 onDragEnd={dropNote}
                 key = {note.id}>
-
+                
                 <div onClick={() => dispatch({ type: 'DELETE_NOTE', payload: note })}
                     className="close">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
