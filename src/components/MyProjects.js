@@ -3,32 +3,17 @@ import React from 'react';
 import {useContext} from 'react'
 import { ContentContext } from './ContentContext'
 import './Menu.css'
-import {getDoc} from 'firebase/firestore';
+
 
 function MyProjects(props) {
     const {content, setContent} = useContext(ContentContext)
     // const [children, setChildren] = useState([])
 
     const chooseProject = (project) => {
-        props.setProjectOnClick(project);
+        props.setProject(project);
 
         setContent('project');
     }
-
-
-    props.projects.map((project) => {
-        console.log(project.Children.)
-    })
-
-
-
-
-
-
-   
-
-
-
 
     return (
         <>

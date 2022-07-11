@@ -5,8 +5,8 @@ import Menu from './Menu'
 import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
-
+import { getDoc, doc } from 'firebase/firestore'
+import DragNav from './DragNav'
 
 let public_id = "Ronald_1893"
 
@@ -15,23 +15,8 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
-  const [currentProject, setCurrentProject] = useState([])
+  const [currentProject, setProject] = useState([])
   const [currentUser, setCurrentUser] = useState([])
-  const getCurrentUser = () => {
-    return currentUser;
-  }
-
-  const setProjectOnClick = (project) => {
-    setCurrentProject(project)
-  }
-  const getCurrentProject = () => {
-    return currentProject;
-  }
-
-
-  // Get the Tasks Collection
-  const [tasks, setTasks] = useState([]);
-  const tasksCollectionRef = collection(db, 'Tasks')
 
   useEffect(() => {
     const getProjects = async () => {
@@ -55,27 +40,19 @@ function App() {
     getProjects();
   }, [])
 
-  useEffect(() => {
-    const getTasks = async () => {
-      const data = await getDocs(tasksCollectionRef);
-      setTasks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-    }
-
-    getTasks();
-  }, [])
-
   return (
  
       <ContentContext.Provider value={{content, setContent}}>
         <Navbar name = {public_id}/>
   
-        <Menu projects = {projects} setProjectOnClick = {setProjectOnClick}/>
-        <Content 
-        projects = {projects}
-        getCurrentProject = {getCurrentProject}
-        setProjectOnClick = {setProjectOnClick}
-        tasks = {tasks}
-        getCurrentUser = {getCurrentUser}/>
+        <Menu projects = {projects} setProject = {setProject}/>
+
+        <DragNav component = {
+          <Content 
+          projects = {projects}
+          setProject = {setProject}
+          currentProject = {currentProject}
+          currentUser = {currentUser}/>}/>
         
       
       </ContentContext.Provider>

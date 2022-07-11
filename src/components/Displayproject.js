@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import profilePic from './profile_pic_1.jpg'
 import './Displayproject.css'
+import {getDoc} from 'firebase/firestore';
 
 
 const dateStyle = {
@@ -8,7 +9,27 @@ const dateStyle = {
     color: 'rgb(64, 110, 18)',
 }
 function Displayproject(props) {
-    console.log(props.project)
+
+
+    const [projects, setProjects] = useState([])
+    const promiseTasks = props.project.Tasks.map( async ref => {
+        const Doc = getDoc(ref)
+        return Doc
+    });
+    // Promise.all(promiseTasks)
+    Promise.all(promiseTasks).then(Docs => {
+        console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+        setProjects(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+        }
+       
+        
+    
+    )
+
+   
+   
+    
+
     return (
         <>
             <div id="project_info">
@@ -45,15 +66,17 @@ function Displayproject(props) {
                 
             </div>
 
-            <div id="in_progress">
+            <div id="done">
 
                 <div className="task_group">
                     <p>Done</p>
                     <p className="task_number">2</p>
                 </div>
 
-                <div className="tasks">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, nisi quis blandit porta, urna nunc tristique urna, ut consectetur quam metus ut libero. </p>
+                {projects.map((project) => {
+                return (
+                    <div className="tasks">
+                    <p>{project.description}</p>
                     <div className="date" style={dateStyle}>
                         <p>
                             <span className="material-symbols-rounded">
@@ -71,28 +94,15 @@ function Displayproject(props) {
                         
                     </div>
                 </div>
+                )
+            })}
 
-                <div className="tasks">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus, nisi quis blandit porta, urna nunc tristique urna, ut consectetur quam metus ut libero. </p>
-                    <div className="date"style={dateStyle}>
-                        <p>
-                            <span className="material-symbols-rounded">
-                                schedule
-                            </span>
-                            June 16
-                        </p>
-                    </div>
-                    <div className="priority"><p>● Mid-level</p></div>
-                    <div className="colab_pic_task">
-                        
-                        <img src={profilePic}/>
-                        <img src={profilePic}/>
-                        <img src={profilePic}/>
-                        
-                    </div>
-                </div>
 
-                                
+
+
+
+
+
             </div>
             {/* <div id="done">
                 <div className="task_group">
