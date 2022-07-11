@@ -5,7 +5,7 @@
     padding-right: 40px;
     position: fixed;
     margin-top: 51px;
-
+    z-index: 1;
 }
 li .project_id {
     display: none;
