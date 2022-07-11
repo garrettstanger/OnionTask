@@ -46,13 +46,13 @@ function App() {
         <Navbar name = {public_id}/>
   
         <Menu projects = {projects} setProject = {setProject}/>
-
         <DragNav component = {
           <Content 
           projects = {projects}
           setProject = {setProject}
           currentProject = {currentProject}
-          currentUser = {currentUser}/>}/>
+          currentUser = {currentUser}/>}
+          content = {content}/>
         
       
       </ContentContext.Provider>
