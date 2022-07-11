@@ -5,7 +5,7 @@ import Menu from './Menu'
 import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
+import { getDoc, doc } from 'firebase/firestore'
 
 
 let public_id = "Ronald_1893"
@@ -17,13 +17,6 @@ function App() {
   const [projects, setProjects] = useState([]);
   const [currentProject, setProject] = useState([])
   const [currentUser, setCurrentUser] = useState([])
-
-
-
-
-  // Get the Tasks Collection
-  const [tasks, setTasks] = useState([]);
-  const tasksCollectionRef = collection(db, 'Tasks')
 
   useEffect(() => {
     const getProjects = async () => {
@@ -45,15 +38,6 @@ function App() {
     }
 
     getProjects();
-  }, [])
-
-  useEffect(() => {
-    const getTasks = async () => {
-      const data = await getDocs(tasksCollectionRef);
-      setTasks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-    }
-
-    getTasks();
   }, [])
 
   return (
