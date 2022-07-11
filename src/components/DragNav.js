@@ -5,6 +5,7 @@ import { MapInteractionCSS } from 'react-map-interaction';
 
 // Use MapInteraction if you want to determine how to use the resulting translation.
 function DragNav(props) {
+    if (props.content === 'project') {
     console.log(props.component)
     return (
         <div>
@@ -16,4 +17,12 @@ function DragNav(props) {
         </div>
       );
     }
+    else {
+        return (
+            <div>
+                {props.component}
+            </div>
+          );
+    }
+}
 export default DragNav;
