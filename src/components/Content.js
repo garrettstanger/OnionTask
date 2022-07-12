@@ -13,14 +13,15 @@ function Content(props) {
     let display;
 
     if (content === 'dashboard') {
-        display = <Dashboard projects = {props.projects} />;
+        display = <Dashboard projects = {props.projects} 
+        setProject ={props.setProject} />;
     } else if (content === 'project') {
-        display = <Displayproject project = {props.getCurrentProject()}/>;
+        display = <Displayproject project = {props.currentProject}/>;
     } else if (content === 'newProject') {
-        display = <CreateProject />
+        display = <CreateProject currentUser = {props.currentUser}/>
     } else if (content === 'calendar') {
         display = <Calendar />
-    } else if (content == 'MySpace'){
+    } else if (content === 'MySpace'){
         display = <MySpace />
     }
    
