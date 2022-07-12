@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import profilePic from './profile_pic_1.jpg'
 import './Displayproject.css'
 import {getDoc} from 'firebase/firestore';
@@ -17,14 +17,18 @@ function Displayproject(props) {
         return Doc
     });
     // Promise.all(promiseTasks)
-    Promise.all(promiseTasks).then(Docs => {
-        console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-        setProjects(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-        }
-       
+
+    useEffect(() => {
+        Promise.all(promiseTasks).then(Docs => {
+            console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+            console.log('hiiii')
+            setProjects(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+            }
+           
+            
         
-    
-    )
+        )
+    },[])
 
    
    

@@ -8,7 +8,7 @@ function DragNav(props) {
     if (props.content === 'project') {
     console.log(props.component)
     return (
-        <div>
+        <div style={{height:"100vh"}}>
             <MapInteractionCSS  className="mapWrap">
                 <> 
                 {props.component}
