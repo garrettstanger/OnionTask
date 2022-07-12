@@ -11,7 +11,7 @@ const dateStyle = {
 function Displayproject(props) {
 
 
-    const [projects, setProjects] = useState([])
+    const [tasks, setTasks] = useState([])
     const promiseTasks = props.project.Tasks.map( async ref => {
         const Doc = getDoc(ref)
         return Doc
@@ -22,7 +22,7 @@ function Displayproject(props) {
         Promise.all(promiseTasks).then(Docs => {
             console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
             console.log('hiiii')
-            setProjects(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+            setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
             }
            
             
@@ -77,10 +77,10 @@ function Displayproject(props) {
                     <p className="task_number">2</p>
                 </div>
 
-                {projects.map((project) => {
+                {tasks.map((task) => {
                 return (
-                    <div className="tasks">
-                    <p>{project.description}</p>
+                    <div className="tasks" key={task.id}>
+                    <p>{task.description}</p>
                     <div className="date" style={dateStyle}>
                         <p>
                             <span className="material-symbols-rounded">
