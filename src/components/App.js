@@ -5,8 +5,8 @@ import Menu from './Menu'
 import Content from './Content';
 import { ContentContext } from './ContentContext';
 import {db} from './firebase'
-import { collection, getDocs, getDoc, doc } from 'firebase/firestore'
-
+import { getDoc, doc } from 'firebase/firestore'
+import DragNav from './DragNav'
 
 let public_id = "Ronald_1893"
 
@@ -15,28 +15,18 @@ function App() {
 
   // Get the Projects Collection
   const [projects, setProjects] = useState([]);
-  const [currentProject, setCurrentProject] = useState([])
-  const setProjectOnClick = (project) => {
-    setCurrentProject(project)
-  }
-  const getCurrentProject = () => {
-    return currentProject;
-  }
-
-
-  // Get the Tasks Collection
-  const [tasks, setTasks] = useState([]);
-  const tasksCollectionRef = collection(db, 'Tasks')
+  const [currentProject, setProject] = useState([])
+  const [currentUser, setCurrentUser] = useState([])
 
   useEffect(() => {
     const getProjects = async () => {
 
       // Getting user's document from public ID
       const search = await getDoc(doc(db,'PublicUserID',public_id))
-      const User = await getDoc(
-        doc(db,'Users',search.data()['private_reference']))
+      const userRef = doc(db,'Users',search.data()['private_reference'])
+      const User = await getDoc(userRef)
       const userProjectsRefs = await User.get('Projects')
-
+      setCurrentUser([userRef, User.id])
       // Promising each project from the user
       const promise = userProjectsRefs.map( async ref => {
         const Doc = getDoc(ref['location'])
@@ -50,26 +40,19 @@ function App() {
     getProjects();
   }, [])
 
-  useEffect(() => {
-    const getTasks = async () => {
-      const data = await getDocs(tasksCollectionRef);
-      setTasks(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
-    }
-
-    getTasks();
-  }, [])
-
   return (
  
       <ContentContext.Provider value={{content, setContent}}>
         <Navbar name = {public_id}/>
   
-        <Menu projects = {projects} setProjectOnClick = {setProjectOnClick}/>
-        <Content 
-        projects = {projects}
-        getCurrentProject = {getCurrentProject}
-        setProjectOnClick = {setProjectOnClick}
-        tasks = {tasks}/>
+        <Menu projects = {projects} setProject = {setProject}/>
+        <DragNav component = {
+          <Content 
+          projects = {projects}
+          setProject = {setProject}
+          currentProject = {currentProject}
+          currentUser = {currentUser}/>}
+          content = {content}/>
         
       
       </ContentContext.Provider>
