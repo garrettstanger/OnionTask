@@ -1,7 +1,6 @@
-import { async } from '@firebase/util'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { db } from './firebase';
-import { collection, addDoc, updateDoc, doc, arrayUnion } from 'firebase/firestore'
+import { collection, addDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/firestore'
 import './CreateProject.css';
 
 function CreateProject(props) {
@@ -22,7 +21,7 @@ function CreateProject(props) {
         <div id='create_project'>
             <div id='create_project_title'>Create New Project</div>
             <input type='text' placeholder='Project Name...' onChange={(event) => {event.preventDefault(); setTitle(event.target.value) }}></input><br></br><br></br>
-            <input type='date' onChange={(event) => {setDate(event.target.value); event.preventDefault()}}></input><br></br><br></br>
+            <input type='date' onChange={(event) => {setDate(Timestamp.fromDate(new Date(event.target.value))); event.preventDefault()}}></input><br></br><br></br>
             <input type='text' placeholder='Project Description...' onChange={(event) => {setDescription(event.target.value); event.preventDefault()}}></input><br></br><br></br>
             <button onClick={() => AddProject()}>Create Project</button><br></br>
         </div>
