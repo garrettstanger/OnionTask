@@ -28,7 +28,7 @@ function Displayproject(props) {
             
         
         )
-    },[])
+    },[props.project])
 
    
    
