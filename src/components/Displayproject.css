@@ -31,17 +31,17 @@
     border: 0.5px solid #e4e4e4;
 }
 #in_progress {
-    grid-column: 2/3;
-    grid-row: 2/3;
-}
-#done {
-    grid-column: 3/4;
-    grid-row: 2/3;
-}
-#assigned {
     grid-column: 1/2;
     grid-row: 2/3;
 }
+#done {
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
+/* #assigned {
+    grid-column: 1/2;
+    grid-row: 2/3;
+} */
 .date {
     padding: 5px;
     width: fit-content;
