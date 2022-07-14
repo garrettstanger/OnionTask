@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { db } from './firebase';
+import { ContentContext} from './ContentContext'
 import { collection, addDoc, getDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/firestore'
 import './CreateProject.css';
 
@@ -14,7 +15,6 @@ function CreateProject(props) {
         setContent('project')    
     }
     
-    let url = "/";
     // Bringing in the users information for connection
     const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
@@ -26,19 +26,18 @@ function CreateProject(props) {
         const projectRef = await addDoc(projectsCollectionRef, {title : newTitle, date : newDate, description : newDescription, Users : [userID]}) 
         console.log(projectRef);
         updateDoc(userRef, {Projects : arrayUnion({location : projectRef, last_interaction : newDate})})
+        
     } 
 
 
  // User enters data to submit to the database and the AddProject runs the event to connect to the db
     return (
         <div id='create_project'>
-            <form action={url}>
             <div id='create_project_title'>Create New Project</div>
             <input type='text' placeholder='Project Name...' onChange={(event) => {event.preventDefault(); setTitle(event.target.value) }}></input><br></br><br></br>
             <input type='date' onChange={(event) => {setDate(Timestamp.fromDate(new Date(event.target.value))); event.preventDefault()}}></input><br></br><br></br>
             <input type='text' placeholder='Project Description...' onChange={(event) => {setDescription(event.target.value); event.preventDefault()}}></input><br></br><br></br>
-            <button onClick={() => AddProject()}>Create Project</button><br></br>
-            </form>
+            <button onClick={() => AddProject().then(DocRef => getAndSetProject(DocRef))}>Create Project</button><br></br>
         </div>
         
     )
