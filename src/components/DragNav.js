@@ -6,7 +6,6 @@ import { MapInteractionCSS } from 'react-map-interaction';
 // Use MapInteraction if you want to determine how to use the resulting translation.
 function DragNav(props) {
     if (props.content === 'project') {
-    console.log(props.component)
     return (
         <div style={{height:"100vh"}}>
             <MapInteractionCSS  className="mapWrap">
