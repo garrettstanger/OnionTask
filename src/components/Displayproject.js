@@ -18,22 +18,63 @@ function Displayproject(props) {
 
 
     const [tasks, setTasks] = useState([])
-    const promiseTasks = props.project.Tasks.map( async ref => {
-        const Doc = getDoc(ref)
-        return Doc
-    });
-    
+    console.log(props.project.Tasks)
+    if (props.project.Tasks !== undefined) {
+        var promiseTasks = props.project.Tasks.map( async ref => {
+            const Doc = getDoc(ref)
+            return Doc
+        });
+    }
+
+
+    const fillTasks = (projectTasks,category) => {
+
+        if (projectTasks !== undefined) {
+            return (
+                projectTasks.map((task) => {
+                    if(task.category === category) {
+                        return (
+                            <div className="tasks" key={task.id}>
+                            <p>{task.description}</p>
+                            <div className="date" style={dateStyle}>
+                                <p>
+                                    <span className="material-symbols-rounded">
+                                        schedule
+                                    </span>
+                                    June 10
+                                </p>
+                            </div>
+                            <div className="priority"><p>● Important</p></div>
+                            <div className="colab_pic_task">
+                                
+                                <img src={profilePic}/>
+                                <img src={profilePic}/>
+                                <img src={profilePic}/>
+                                
+                            </div>
+                        </div>
+                        )
+                    }
+                })
+            )
+        }
+    }
+
     // This hook prevents multiple requests from the database. Change it at your own risk
     useEffect(() => {
+        console.log(props.project.Tasks)
+        
         Promise.all(promiseTasks).then(Docs => {
             console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
             console.log('Tasks being requested')
             setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-            }
-           
-            
-        
+        }).catch(err => {
+            console.log('Could not find tasks for this project.')
+            setTasks(undefined)}
         )
+        
+
+
     },[props.project])
 
    
@@ -73,31 +114,8 @@ function Displayproject(props) {
                     <p>In progress</p>
                     <p  onClick={() => console.log('buttom pressed')} className="task_number">+</p>
                 </div>
-                {tasks.map((task) => {
-                if(task.category === 'In progress') {
-                    return (
-                        <div className="tasks" key={task.id}>
-                        <p>{task.description}</p>
-                        <div className="date" style={dateStyle}>
-                            <p>
-                                <span className="material-symbols-rounded">
-                                    schedule
-                                </span>
-                                June 10
-                            </p>
-                        </div>
-                        <div className="priority"><p>● Important</p></div>
-                        <div className="colab_pic_task">
-                            
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            
-                        </div>
-                    </div>
-                    )
-                }
-            })}
+                
+                {fillTasks(tasks,'In progress')}
 
             {/* Done Section  */}
             </div>
@@ -109,31 +127,8 @@ function Displayproject(props) {
                     <p className="task_number">2</p>
                 </div>
 
-                {tasks.map((task) => {
-                if(task.category === 'Done') {
-                    return (
-                        <div className="tasks" key={task.id}>
-                        <p>{task.description}</p>
-                        <div className="date" style={dateStyle}>
-                            <p>
-                                <span className="material-symbols-rounded">
-                                    schedule
-                                </span>
-                                June 10
-                            </p>
-                        </div>
-                        <div className="priority"><p>● Important</p></div>
-                        <div className="colab_pic_task">
-                            
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            
-                        </div>
-                    </div>
-                    )
-                }
-            })}
+                {fillTasks(tasks,'Done')}
+
             </div>  
         </>
     )
