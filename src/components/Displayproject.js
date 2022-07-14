@@ -1,7 +1,7 @@
-// This compoenent will display the project that is being selected from the Menu and Dashboard components
+// This compoenent will display the project that is being selected from the
+// Menu and Dashboard components
+
 // Props are being passed through App -> Content -> Displayproject (currentProject)
-
-
 
 
 import React, {useEffect, useState} from 'react'
@@ -25,12 +25,14 @@ function Displayproject(props) {
         });
     }
 
-
+    // Used to populate each task category.
     const fillTasks = (projectTasks,category) => {
 
+        // Check if project has tasks
         if (projectTasks !== undefined) {
             return (
                 projectTasks.map((task) => {
+                    // Only populate tasks in 'category'
                     if(task.category === category) {
                         return (
                             <div className="tasks" key={task.id}>
@@ -59,7 +61,8 @@ function Displayproject(props) {
         }
     }
 
-    // This hook prevents multiple requests from the database. Change it at your own risk
+    // This hook prevents multiple requests from the database. Change it at
+    // your own risk
     useEffect(() => {
         
         Promise.all(promiseTasks).then(Docs => {
@@ -73,9 +76,6 @@ function Displayproject(props) {
 
     },[props.project])
 
-   
-   
-    
 
     return (
         <>
@@ -110,7 +110,8 @@ function Displayproject(props) {
                     <p>In progress</p>
                     <p  onClick={() => console.log('buttom pressed')} className="task_number">+</p>
                 </div>
-                
+
+                {/* Populating 'In progress' */}
                 {fillTasks(tasks,'In progress')}
 
             {/* Done Section  */}
@@ -123,6 +124,7 @@ function Displayproject(props) {
                     <p className="task_number">2</p>
                 </div>
 
+                {/* Populating 'Done' */}
                 {fillTasks(tasks,'Done')}
 
             </div>  
