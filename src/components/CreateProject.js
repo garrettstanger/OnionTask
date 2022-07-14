@@ -7,9 +7,8 @@ import './CreateProject.css';
 function CreateProject(props) {
     const {content, setContent} = useContext(ContentContext)
 
-    const getAndSetProject = async (projectRef) => {
-        const Doc = await getDoc(projectRef)
-        const unpacked = {...Doc.data(), id : Doc.id}
+    const getAndSetProject = async (Project) => {
+        const unpacked = {...Project.data(), id : Project.id}
         props.setProject(unpacked)
         setContent('project')    
     }
@@ -24,6 +23,7 @@ function CreateProject(props) {
         const projectRef = await addDoc(projectsCollectionRef, {title : newTitle, date : newDate, description : newDescription, Users : [userID]}) 
         console.log(projectRef);
         updateDoc(userRef, {Projects : arrayUnion({location : projectRef, last_interaction : newDate})})
+        return await getDoc(projectRef)
     } 
 
 
@@ -34,7 +34,7 @@ function CreateProject(props) {
             <input type='text' placeholder='Project Name...' onChange={(event) => {event.preventDefault(); setTitle(event.target.value) }}></input><br></br><br></br>
             <input type='date' onChange={(event) => {setDate(Timestamp.fromDate(new Date(event.target.value))); event.preventDefault()}}></input><br></br><br></br>
             <input type='text' placeholder='Project Description...' onChange={(event) => {setDescription(event.target.value); event.preventDefault()}}></input><br></br><br></br>
-            <a onClick={() => AddProject()} href={url} >Create Project</a><br></br>
+            <button onClick={() => getAndSetProject(AddProject())} >Create Project</button><br></br>
         </div>
         
     )
