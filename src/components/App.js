@@ -34,11 +34,13 @@ function App() {
       const User = await getDoc(userRef)
       const userProjectsRefs = await User.get('Projects')
       setCurrentUser([userRef, User.id])
+
       // Promising each project from the user
       const promise = userProjectsRefs.map( async ref => {
         const Doc = getDoc(ref['location'])
         return Doc
       });
+      
       // Wait for all to resolve and then using it in setProjects()
       Promise.all(promise).then(Docs => {
       setProjects(Docs.map((doc) => ({...doc.data(), id: doc.id })))})
