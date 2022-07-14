@@ -61,7 +61,6 @@ function Displayproject(props) {
 
     // This hook prevents multiple requests from the database. Change it at your own risk
     useEffect(() => {
-        (props.project.Tasks)
         
         Promise.all(promiseTasks).then(Docs => {
             setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
