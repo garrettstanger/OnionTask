@@ -18,7 +18,6 @@ function Displayproject(props) {
 
 
     const [tasks, setTasks] = useState([])
-    console.log(props.project.Tasks)
     if (props.project.Tasks !== undefined) {
         var promiseTasks = props.project.Tasks.map( async ref => {
             const Doc = getDoc(ref)
@@ -62,11 +61,9 @@ function Displayproject(props) {
 
     // This hook prevents multiple requests from the database. Change it at your own risk
     useEffect(() => {
-        console.log(props.project.Tasks)
+        (props.project.Tasks)
         
         Promise.all(promiseTasks).then(Docs => {
-            console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-            console.log('Tasks being requested')
             setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
         }).catch(err => {
             console.log('Could not find tasks for this project.')
