@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
 import { db } from './firebase';
-import { collection, addDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/firestore'
+import { collection, addDoc, getDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/firestore'
 import './CreateProject.css';
 
+
 function CreateProject(props) {
+    const {content, setContent} = useContext(ContentContext)
+
+    const getAndSetProject = async (projectRef) => {
+        const Doc = await getDoc(projectRef)
+        const unpacked = {...Doc.data(), id : Doc.id}
+        props.setProject(unpacked)
+        setContent('project')    
+    }
+    
     let url = "/";
     const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
