@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { db } from './firebase';
+import { ContentContext} from './ContentContext'
 import { collection, addDoc, getDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/firestore'
 import './CreateProject.css';
 
@@ -13,7 +14,6 @@ function CreateProject(props) {
         setContent('project')    
     }
     
-    let url = "/";
     // Bringing in the users information for connection
     const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
