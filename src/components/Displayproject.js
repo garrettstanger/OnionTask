@@ -28,7 +28,7 @@ function Displayproject(props) {
             
         
         )
-    },[])
+    },[props.project])
 
    
    
@@ -62,11 +62,40 @@ function Displayproject(props) {
             </div>
 
             
-            <div id="assigned">
+            <div id="in_progress">
                 <div className="task_group">
                     <p>In progress</p>
-                    <p className="task_number">1</p>
+                    <p className="task_number">+</p>
                 </div>
+                {tasks.map((task) => {
+                if(task.category === 'In progress') {
+                    return (
+                        <div className="tasks" key={task.id}>
+                        <p>{task.description}</p>
+                        <div className="date" style={dateStyle}>
+                            <p>
+                                <span className="material-symbols-rounded">
+                                    schedule
+                                </span>
+                                June 10
+                            </p>
+                        </div>
+                        <div className="priority"><p>● Important</p></div>
+                        <div className="colab_pic_task">
+                            
+                            <img src={profilePic}/>
+                            <img src={profilePic}/>
+                            <img src={profilePic}/>
+                            
+                        </div>
+                    </div>
+                    )
+                }
+            })}
+
+
+
+
                 
             </div>
 
@@ -78,27 +107,29 @@ function Displayproject(props) {
                 </div>
 
                 {tasks.map((task) => {
-                return (
-                    <div className="tasks" key={task.id}>
-                    <p>{task.description}</p>
-                    <div className="date" style={dateStyle}>
-                        <p>
-                            <span className="material-symbols-rounded">
-                                schedule
-                            </span>
-                            June 10
-                        </p>
+                if(task.category === 'Done') {
+                    return (
+                        <div className="tasks" key={task.id}>
+                        <p>{task.description}</p>
+                        <div className="date" style={dateStyle}>
+                            <p>
+                                <span className="material-symbols-rounded">
+                                    schedule
+                                </span>
+                                June 10
+                            </p>
+                        </div>
+                        <div className="priority"><p>● Important</p></div>
+                        <div className="colab_pic_task">
+                            
+                            <img src={profilePic}/>
+                            <img src={profilePic}/>
+                            <img src={profilePic}/>
+                            
+                        </div>
                     </div>
-                    <div className="priority"><p>● Important</p></div>
-                    <div className="colab_pic_task">
-                        
-                        <img src={profilePic}/>
-                        <img src={profilePic}/>
-                        <img src={profilePic}/>
-                        
-                    </div>
-                </div>
-                )
+                    )
+                }
             })}
 
 

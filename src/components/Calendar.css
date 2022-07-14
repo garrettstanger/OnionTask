@@ -1,4 +1,13 @@
-div {
-    color:brown;
+
+.calendar_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-family: 'PT Sans', sans-serif;
+}
+.add_new_event {
+    grid-column: 2/3;
 }
 
+.calendar {
+    grid-row: 1/2;
+}
