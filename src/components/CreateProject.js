@@ -4,6 +4,7 @@ import { collection, addDoc, updateDoc, Timestamp, arrayUnion } from 'firebase/f
 import './CreateProject.css';
 
 function CreateProject(props) {
+    let url = "/";
     const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
     const [newDate, setDate] = useState('');
@@ -23,7 +24,7 @@ function CreateProject(props) {
             <input type='text' placeholder='Project Name...' onChange={(event) => {event.preventDefault(); setTitle(event.target.value) }}></input><br></br><br></br>
             <input type='date' onChange={(event) => {setDate(Timestamp.fromDate(new Date(event.target.value))); event.preventDefault()}}></input><br></br><br></br>
             <input type='text' placeholder='Project Description...' onChange={(event) => {setDescription(event.target.value); event.preventDefault()}}></input><br></br><br></br>
-            <button onClick={() => AddProject()}>Create Project</button><br></br>
+            <a onClick={() => AddProject()} href={url} >Create Project</a><br></br>
         </div>
         
     )
