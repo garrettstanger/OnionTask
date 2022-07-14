@@ -14,11 +14,13 @@ function CreateProject(props) {
     }
     
     let url = "/";
+    // Bringing in the users information for connection
     const [userRef, userID] = props.currentUser;
     const [newTitle, setTitle] = useState('');
     const [newDate, setDate] = useState('');
     const [newDescription, setDescription] = useState('');
     const projectsCollectionRef = collection(db, 'Projects');
+    // Event for connecting and adding the users input to the correct locations in the database.
     const AddProject = async (event) => {
         const projectRef = await addDoc(projectsCollectionRef, {title : newTitle, date : newDate, description : newDescription, Users : [userID]}) 
         console.log(projectRef);
@@ -27,7 +29,7 @@ function CreateProject(props) {
     } 
 
 
-
+ // User enters data to submit to the database and the AddProject runs the event to connect to the db
     return (
         <div id='create_project'>
             <div id='create_project_title'>Create New Project</div>
