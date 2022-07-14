@@ -1,3 +1,9 @@
+// This compoenent will display the project that is being selected from the Menu and Dashboard components
+// Props are being passed through App -> Content -> Displayproject (currentProject)
+
+
+
+
 import React, {useEffect, useState} from 'react'
 import profilePic from './profile_pic_1.jpg'
 import './Displayproject.css'
@@ -16,12 +22,12 @@ function Displayproject(props) {
         const Doc = getDoc(ref)
         return Doc
     });
-    // Promise.all(promiseTasks)
-
+    
+    // This hook prevents multiple requests from the database. Change it at your own risk
     useEffect(() => {
         Promise.all(promiseTasks).then(Docs => {
             console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-            console.log('hiiii')
+            console.log('Tasks being requested')
             setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
             }
            
@@ -61,11 +67,11 @@ function Displayproject(props) {
                 </div> 
             </div>
 
-            
+            {/* In progress section */}
             <div id="in_progress">
                 <div className="task_group">
                     <p>In progress</p>
-                    <p className="task_number">+</p>
+                    <p  onClick={() => console.log('buttom pressed')} className="task_number">+</p>
                 </div>
                 {tasks.map((task) => {
                 if(task.category === 'In progress') {
@@ -93,10 +99,7 @@ function Displayproject(props) {
                 }
             })}
 
-
-
-
-                
+            {/* Done Section  */}
             </div>
 
             <div id="done">
@@ -131,24 +134,8 @@ function Displayproject(props) {
                     )
                 }
             })}
-
-
-
-
-
-
-
-            </div>
-            {/* <div id="done">
-                <div className="task_group">
-                    <p>Done</p>
-                    <p className="task_number">0</p>
-                </div>
-
-                
-            </div> */}
-        </> 
-        
+            </div>  
+        </>
     )
 }
 
