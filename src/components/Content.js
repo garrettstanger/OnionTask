@@ -18,7 +18,10 @@ function Content(props) {
     } else if (content === 'project') {
         display = <Displayproject project = {props.currentProject}/>;
     } else if (content === 'newProject') {
-        display = <CreateProject currentUser = {props.currentUser} setProject = {props.setProject} content = {props.content}/>
+        display = <CreateProject 
+            currentUser = {props.currentUser}
+            setProject = {props.setProject}
+            content = {props.content}/>
     } else if (content === 'calendar') {
         display = <Calendar />
     } else if (content === 'MySpace'){

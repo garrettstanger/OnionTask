@@ -1,7 +1,7 @@
-// This compoenent will display the project that is being selected from the Menu and Dashboard components
+// This compoenent will display the project that is being selected from the
+// Menu and Dashboard components
+
 // Props are being passed through App -> Content -> Displayproject (currentProject)
-
-
 
 
 import React, {useEffect, useState} from 'react'
@@ -18,27 +18,64 @@ function Displayproject(props) {
 
 
     const [tasks, setTasks] = useState([])
-    const promiseTasks = props.project.Tasks.map( async ref => {
-        const Doc = getDoc(ref)
-        return Doc
-    });
-    
-    // This hook prevents multiple requests from the database. Change it at your own risk
+    if (props.project.Tasks !== undefined) {
+        var promiseTasks = props.project.Tasks.map( async ref => {
+            const Doc = getDoc(ref)
+            return Doc
+        });
+    }
+
+    // Used to populate each task category.
+    const fillTasks = (projectTasks,category) => {
+
+        // Check if project has tasks
+        if (projectTasks !== undefined) {
+            return (
+                projectTasks.map((task) => {
+                    // Only populate tasks in 'category'
+                    if(task.category === category) {
+                        return (
+                            <div className="tasks" key={task.id}>
+                            <p>{task.description}</p>
+                            <div className="date" style={dateStyle}>
+                                <p>
+                                    <span className="material-symbols-rounded">
+                                        schedule
+                                    </span>
+                                    June 10
+                                </p>
+                            </div>
+                            <div className="priority"><p>● Important</p></div>
+                            <div className="colab_pic_task">
+                                
+                                <img src={profilePic}/>
+                                <img src={profilePic}/>
+                                <img src={profilePic}/>
+                                
+                            </div>
+                        </div>
+                        )
+                    }
+                })
+            )
+        }
+    }
+
+    // This hook prevents multiple requests from the database. Change it at
+    // your own risk
     useEffect(() => {
-        Promise.all(promiseTasks).then(Docs => {
-            console.log(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-            console.log('Tasks being requested')
-            setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
-            }
-           
-            
         
+        Promise.all(promiseTasks).then(Docs => {
+            setTasks(Docs.map((Doc) => ({...Doc.data(), id: Doc.id })))
+        }).catch(err => {
+            console.log('Could not find tasks for this project.')
+            setTasks(undefined)}
         )
+        
+
+
     },[props.project])
 
-   
-   
-    
 
     return (
         <>
@@ -73,31 +110,9 @@ function Displayproject(props) {
                     <p>In progress</p>
                     <p  onClick={() => console.log('buttom pressed')} className="task_number">+</p>
                 </div>
-                {tasks.map((task) => {
-                if(task.category === 'In progress') {
-                    return (
-                        <div className="tasks" key={task.id}>
-                        <p>{task.description}</p>
-                        <div className="date" style={dateStyle}>
-                            <p>
-                                <span className="material-symbols-rounded">
-                                    schedule
-                                </span>
-                                June 10
-                            </p>
-                        </div>
-                        <div className="priority"><p>● Important</p></div>
-                        <div className="colab_pic_task">
-                            
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            
-                        </div>
-                    </div>
-                    )
-                }
-            })}
+
+                {/* Populating 'In progress' */}
+                {fillTasks(tasks,'In progress')}
 
             {/* Done Section  */}
             </div>
@@ -109,31 +124,9 @@ function Displayproject(props) {
                     <p className="task_number">2</p>
                 </div>
 
-                {tasks.map((task) => {
-                if(task.category === 'Done') {
-                    return (
-                        <div className="tasks" key={task.id}>
-                        <p>{task.description}</p>
-                        <div className="date" style={dateStyle}>
-                            <p>
-                                <span className="material-symbols-rounded">
-                                    schedule
-                                </span>
-                                June 10
-                            </p>
-                        </div>
-                        <div className="priority"><p>● Important</p></div>
-                        <div className="colab_pic_task">
-                            
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            <img src={profilePic}/>
-                            
-                        </div>
-                    </div>
-                    )
-                }
-            })}
+                {/* Populating 'Done' */}
+                {fillTasks(tasks,'Done')}
+
             </div>  
         </>
     )
