@@ -36,7 +36,7 @@ function CreateProject(props) {
             <input type='text' placeholder='Project Name...' onChange={(event) => {event.preventDefault(); setTitle(event.target.value) }}></input><br></br><br></br>
             <input type='date' onChange={(event) => {setDate(Timestamp.fromDate(new Date(event.target.value))); event.preventDefault()}}></input><br></br><br></br>
             <input type='text' placeholder='Project Description...' onChange={(event) => {setDescription(event.target.value); event.preventDefault()}}></input><br></br><br></br>
-            <button onClick={() => getAndSetProject(AddProject())} >Create Project</button><br></br>
+            <button onClick={() => AddProject(getAndSetProject())} >Create Project</button><br></br>
         </div>
         
     )
