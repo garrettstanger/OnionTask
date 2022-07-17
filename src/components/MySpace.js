@@ -5,14 +5,15 @@ import './MySpace.scss'
 import React, { useState, useReducer } from 'react';
 import { v4 as uuid } from 'uuid';
 
+// This part of mySpace was created by using a hook from React called useReducer. 
 const initalNoteState ={
 
     lastNoteCreated: null,
     totalNotes: 0,
     notes: [],
 };
-const projectsCollectionRef = collection(db, 'Notes')
-
+// As we may see notesReducer is create and is populated by states of in this case the notes. It is better used when using a swtch 
+// statement since there are two actions we have right now which is delete note and add note. 
 const notesReducer = (prevState,action) =>{
     switch(action.type){
         case 'ADD_NOTE':{
@@ -23,7 +24,6 @@ const notesReducer = (prevState,action) =>{
             };
 
             console.log('After ADD_NOTE: ', newState);
-            addDoc(projectsCollectionRef,{myNotes:action.payload.text});
             return newState;
 
         }
@@ -39,18 +39,21 @@ const notesReducer = (prevState,action) =>{
             
     }
 };
-
+// this is the "main" function where all the other constants are called in order to add the note or delete it. 
 function MySpace(){
     const [noteInput, setNoteInput] = useState('');
     const [noteState, dispatch] = useReducer(notesReducer, initalNoteState);
-    //const projectsCollectionRef = collection(db, 'Projects')
+    // This constant is to add the note to Firebase. (Still a work in progress)
+    const projectsCollectionRef = collection(db, 'Notes')
 
 
     const addNote = event => {
         event.preventDefault();
+        // Checks so no empty notes are added. 
         if (!noteInput){
             return;
         }
+        // Each note has an id, text and a rotate option which helps gives some variety on how the note looks when being displayed. 
         const newNote ={
             id: uuid(),
             text: noteInput,
@@ -59,6 +62,7 @@ function MySpace(){
         dispatch({type: 'ADD_NOTE', payload: newNote});
         setNoteInput('');
     };
+    // These two following options are for the to drag the note and putting it in any part of the screen and dropping it. 
     const dropNote = event => {
         event.target.style.left = `${event.pageX - 50}px`;
         event.target.style.top = `${event.pageY - 50}px`;
@@ -68,7 +72,8 @@ function MySpace(){
         event.preventDefault();
     }
 
-
+    // This is what the app return, in here we find the text area and the all the componets coming together, also 
+    //  this is where add note and delete note are called. 
     return(
         <div className="app" onDragOver={dragOver}>
             <h1>
@@ -81,6 +86,7 @@ function MySpace(){
              placeholder = "Create a new note..."></textarea>
             <button>Add Note</button> 
         </form>
+        
         {noteState
           .notes
           .map(note => (
